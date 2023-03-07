@@ -21,7 +21,7 @@ provider "azurerm" {
 
 module "azure-er" {
   source          = "bayupw/azure-er/equinix"
-  version         = "1.0.0"
+  version         = "1.0.1"
 
   azure_region             = "East US"
   er_circuit_location      = "New York"

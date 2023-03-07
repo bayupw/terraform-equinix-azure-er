@@ -104,6 +104,15 @@ resource "azurerm_virtual_network_gateway_connection" "this" {
   type                       = "ExpressRoute"
   virtual_network_gateway_id = var.create_vng ? azurerm_virtual_network_gateway.this[0].id : var.vng_id
   express_route_circuit_id   = azurerm_express_route_circuit.this.id
+
+  timeouts {
+    create = "30m"
+    delete = "30m"
+  }
+
+  lifecycle {
+    ignore_changes = [status]
+  }
 }
 
 locals {
