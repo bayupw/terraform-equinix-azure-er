@@ -93,6 +93,8 @@ resource "equinix_ecx_l2_connection" "azure" {
   lifecycle {
     ignore_changes = [status]
   }
+
+  depends_on = [azurerm_express_route_circuit.this]
 }
 
 resource "azurerm_virtual_network_gateway_connection" "this" {
@@ -106,12 +108,12 @@ resource "azurerm_virtual_network_gateway_connection" "this" {
   express_route_circuit_id   = azurerm_express_route_circuit.this.id
 
   timeouts {
-    create = "30m"
-    delete = "30m"
+    create = "20m"
+    delete = "20m"
   }
 
   lifecycle {
-    ignore_changes = [status]
+    ignore_changes = all
   }
 }
 
